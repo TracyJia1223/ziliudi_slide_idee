@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering the Tech Job Interview - Idee Liao</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 1920px;
+            height: 1080px;
+            background: linear-gradient(135deg, #fafaf8 0%, #f0f0eb 100%);
+            padding: 55px 80px 55px 80px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── decorative circles ── */
+        .slide::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: rgba(200, 220, 210, 0.15);
+            border-radius: 50%;
+            top: -150px;
+            right: -100px;
+            z-index: 0;
+        }
+        .slide::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(100, 130, 110, 0.08);
+            border-radius: 50%;
+            bottom: -80px;
+            right: 150px;
+            z-index: 0;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-shrink: 0;
+        }
+
+        .zld-logo {
+            width: 70px;
+            height: 70px;
+        }
+        .zld-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .zld-title {
+            font-size: 40px;
+            color: #4a5d4e;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Big event title — matches the huge right-side title in the screenshot */
+        .event-info-box {
+            text-align: right;
+            max-width: 1050px;
+        }
+
+        .event-title {
+            font-size: 64px;
+            color: #1a1a1a;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .event-subtitle {
+            font-size: 36px;
+            color: #4a5d4e;
+            font-weight: 400;
+            margin-bottom: 18px;
+            letter-spacing: 0.3px;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .event-detail-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: baseline;
+            gap: 10px;
+            font-size: 20px;
+        }
+
+        .detail-label {
+            color: #999;
+            font-weight: 400;
+            min-width: 70px;
+            text-align: right;
+        }
+
+        .detail-value {
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        /* ── MAIN SECTION ── */
+        .main-section {
+            display: flex;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            min-height: 0;
+            margin-top: 25px;
+        }
+
+        /* LEFT column */
+        .left-section {
+            flex-shrink: 0;
+            width: 340px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .speaker-header {
+            font-size: 38px;
+            color: #4a5d4e;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .speaker-photo {
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid #4a5d4e;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 30px rgba(74, 93, 78, 0.2);
+            flex-shrink: 0;
+        }
+        .speaker-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 0%;
+        }
+
+        .speaker-name-card {
+            background: #F5F7F6;
+            padding: 30px 36px;
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .speaker-name {
+            font-size: 34px;
+            color: #2c2c2c;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .speaker-title {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .speaker-bio-short {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        /* RIGHT description */
+        .description-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 50px 60px 50px 0px;
+            max-width: 780px;
+            background: radial-gradient(ellipse at 30% 40%, rgba(243, 246, 244, 0.9) 0%, rgba(243, 246, 244, 0.4) 60%, transparent 100%);
+            border-radius: 20px;
+        }
+
+        .desc-headline {
+            font-size: 52px;
+            color: #1a1a1a;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 28px;
+        }
+
+        .desc-body {
+            font-size: 24px;
+            color: #555;
+            font-weight: 400;
+            line-height: 1.45;
+            margin-bottom: 18px;
+        }
+
+        .desc-footer {
+            font-size: 24px;
+            color: #555;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* ── QR BOX (bottom-right absolute) ── */
+        .footer-promo {
+            position: absolute;
+            bottom: 90px;
+            right: 80px;
+            z-index: 2;
+        }
+
+        .qr-promo-box {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            background: linear-gradient(135deg, #4a5d4e 0%, #5d7361 100%);
+            padding: 30px 42px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(74, 93, 78, 0.4);
+        }
+
+        .qr-code {
+            width: 155px;
+            height: 155px;
+            background: white;
+            padding: 12px;
+            border-radius: 14px;
+            flex-shrink: 0;
+        }
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-text-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .qr-main-text {
+            font-size: 20px;
+            color: white;
+            font-weight: 600;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .qr-website {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="zld-logo">
+                    <img src="ziliudi_icon.jpg" alt="ZILIUDI Logo">
+                </div>
+                <div class="zld-title">ZILIUDI</div>
+            </div>
+
+            <div class="event-info-box">
+                <div class="event-subtitle">Mastering the Tech Job Interview</div>
+                <div class="event-meta">
+                    <div class="event-detail-row">
+                        <span class="detail-label">Date:</span>
+                        <span class="detail-value">March 20 (Friday), 5:00 – 6:30 PM PT</span>
+                    </div>
+                    <div class="event-detail-row">
+                        <span class="detail-label">Location:</span>
+                        <span class="detail-value">Northeastern University – Vancouver</span>
+                    </div>
+                    <div class="event-detail-row">
+                        <span class="detail-label"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main-section">
+            <div class="left-section">
+                <h2 class="speaker-header">Speaker</h2>
+                <div class="speaker-photo">
+                    <img src="Idee.jpg" alt="Idee Liao">
+                </div>
+                <div class="speaker-name-card">
+                    <div class="speaker-name">Idee Liao</div>
+                    <div class="speaker-title">Senior Software Engineer<br>10+ years of experience</div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <p class="desc-headline">Turn your job search into a system</p>
+                <p class="desc-body">A repeatable, battle-tested framework<br>behind Idee's success in landing multiple big-tech offers.</p>
+                <p class="desc-footer">Built through real interviews. Proven in a competitive market.</p>
+            </div>
+        </div>
+
+        <!-- QR BOX -->
+        <div class="footer-promo">
+            <div class="qr-promo-box">
+                <div class="qr-code">
+                    <img src="wechat.jpeg" alt="QR Code">
+                </div>
+                <div class="qr-text-section">
+                    <div class="qr-main-text">Join Ziliudi</div>
+                    <div class="qr-website">www.ziliudi.io</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
